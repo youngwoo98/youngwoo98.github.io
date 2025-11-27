@@ -33,6 +33,13 @@ jobs:
       - name: Build
         run: npm run build
       
+      - name: Verify build output
+        run: |
+          echo "Contents of dist folder:"
+          ls -la dist/
+          echo "Checking for .nojekyll:"
+          if [ -f "dist/.nojekyll" ]; then echo ".nojekyll exists"; else echo ".nojekyll missing!"; fi
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
