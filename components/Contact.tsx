@@ -45,13 +45,16 @@ export function Contact() {
                 </div>
                 <div className="min-w-0">
                   <h4 className="text-gray-900 mb-1 text-xs sm:text-sm">{t('contact.email')}</h4>
-                  <a href="mailto:youngwoo@example.com" className="text-gray-600 hover:text-blue-600 text-xs sm:text-sm break-all">
-                    youngwoo.kim@example.com
-                  </a>
+                  <button
+                    onClick={() => window.location.href = `mailto:${'ykim.harry'}@${'gmail.com'}`}
+                    className="text-gray-600 hover:text-blue-600 text-xs sm:text-sm break-all text-left cursor-pointer"
+                  >
+                    ykim.harry [at] gmail.com
+                  </button>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 sm:gap-4">
+              {/* <div className="flex items-start gap-3 sm:gap-4">
                 <div className="p-2.5 sm:p-3 bg-blue-100 rounded-lg flex-shrink-0">
                   <Phone size={20} className="text-blue-600 sm:w-6 sm:h-6" />
                 </div>
@@ -61,7 +64,7 @@ export function Contact() {
                     +1 (234) 567-890
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-start gap-3 sm:gap-4">
                 <div className="p-2.5 sm:p-3 bg-blue-100 rounded-lg flex-shrink-0">

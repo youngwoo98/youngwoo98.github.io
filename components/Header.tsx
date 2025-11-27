@@ -25,7 +25,7 @@ export function Header() {
         <div className="flex justify-between items-center py-4">
           <div className="flex-shrink-0">
             <a href="#home" className="text-gray-900">
-              {"<YK />"}
+              {"Hi! I'm Youngwoo Kim"}
             </a>
           </div>
 
