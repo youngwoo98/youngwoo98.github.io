@@ -10,24 +10,24 @@ export function Projects() {
       description: t('project1.desc'),
       image: 'https://images.unsplash.com/photo-1643116774075-acc00caa9a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGNvZGV8ZW58MXx8fHwxNzY0MTg0NjUxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       tags: ['Python', 'OpenCV', 'YOLO', 'TensorFlow'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: '', // Add your GitHub repo link here
+      live: '',   // Add your live demo link here (leave empty if no demo)
     },
     {
       title: t('project2.title'),
       description: t('project2.desc'),
       image: 'https://images.unsplash.com/photo-1660810731526-0720827cbd38?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRldmVsb3BlciUyMHdvcmtzcGFjZXxlbnwxfHx8fDE3NjQyMDE4NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       tags: ['Python', 'Apache Airflow', 'PostgreSQL', 'React'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: '',
+      live: '',
     },
     {
       title: t('project3.title'),
       description: t('project3.desc'),
       image: 'https://images.unsplash.com/photo-1762279389042-9439bfb6c155?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwYWJzdHJhY3R8ZW58MXx8fHwxNzY0MTkzMzQzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       tags: ['React', 'ROS', 'WebSocket', 'Python'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      github: '',
+      live: '',
     },
   ];
 
@@ -70,24 +70,33 @@ export function Projects() {
                   ))}
                 </div>
                 <div className="flex flex-wrap gap-3 sm:gap-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 transition-colors text-xs sm:text-sm"
-                  >
-                    <Github size={18} />
-                    {t('projects.code')}
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 transition-colors text-xs sm:text-sm"
-                  >
-                    <ExternalLink size={18} />
-                    {t('projects.demo')}
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 transition-smooth transform hover:scale-105 text-xs sm:text-sm"
+                    >
+                      <Github size={18} />
+                      {t('projects.code')}
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-gray-700 hover:text-blue-600 transition-smooth transform hover:scale-105 text-xs sm:text-sm"
+                    >
+                      <ExternalLink size={18} />
+                      {t('projects.demo')}
+                    </a>
+                  )}
+                  {!project.github && !project.live && (
+                    <span className="text-gray-400 text-xs sm:text-sm italic">
+                      Links coming soon
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

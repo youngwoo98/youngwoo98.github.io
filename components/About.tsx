@@ -57,7 +57,7 @@ export function About() {
               rel="noopener noreferrer"
               className="inline-block px-5 sm:px-6 py-2.5 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-smooth transform hover:scale-105 text-sm sm:text-base"
             >
-              📄 {t('about.resume')}
+              {t('about.resume')}
             </a>
           </div>
         </div>
