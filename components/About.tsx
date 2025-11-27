@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Code2, Rocket, Users } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -5,6 +6,23 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 export function About() {
   const { t } = useLanguage();
   const { ref, isVisible } = useScrollReveal();
+  const projectImages = [
+    { src: '/sobi.png', label: 'Smart Online Basket Interface' },
+    { src: '/visioninapp.png', label: 'VisionInApp - Custom Vision Platform' },
+    { src: '/realtime.png', label: 'Real-time Pipeline Dashboard' },
+    { src: '/asl.png', label: 'Mhia AI - Motion-to-Speech System' },
+    { src: '/quokka.png', label: 'Quokka – Community Group-Buying Platform' },
+    { src: '/morai.png', label: 'MORAI Autonomous Simulation' },
+  ];
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % projectImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [projectImages.length]);
 
   const highlights = [
     {
@@ -33,12 +51,38 @@ export function About() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 sm:mb-16">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1762279389042-9439bfb6c155?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwYWJzdHJhY3R8ZW58MXx8fHwxNzY0MTkzMzQzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Tech abstract"
-              className="rounded-2xl shadow-lg w-full"
-            />
+          <div className="relative rounded-2xl shadow-lg overflow-hidden aspect-[4/3] bg-gray-100">
+            {projectImages.map((image, index) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.label}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                  index === currentImage ? 'opacity-100' : 'opacity-0'
+                }`}
+                loading={index === currentImage ? 'eager' : 'lazy'}
+              />
+            ))}
+            <div className="absolute inset-x-4 bottom-4 flex items-center justify-between flex-wrap gap-2 bg-black/50 text-white rounded-xl px-4 py-2">
+              <div>
+                <p className="text-xs uppercase tracking-wide text-white/80">
+                  {t('projects.title')}
+                </p>
+                <p className="text-sm font-semibold">{projectImages[currentImage].label}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                {projectImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImage(idx)}
+                    className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                      idx === currentImage ? 'bg-white w-6' : 'bg-white/50'
+                    }`}
+                    aria-label={`Show project ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
           <div>
             <h3 className="text-gray-900 mb-3 sm:mb-4">{t('about.heading')}</h3>
@@ -69,7 +113,7 @@ export function About() {
               className={`text-center p-5 sm:p-6 rounded-xl hover:shadow-lg transition-all duration-500 hover-lift ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
-              style={{ transitionDelay: `${(index + 2) * 150}ms` }}
+              style={{ transitionDelay: `${(index + 2) * 100}ms` }}
             >
               <div className="inline-flex p-3 sm:p-4 bg-blue-100 rounded-full mb-3 sm:mb-4 transition-transform duration-300 hover:scale-110 hover:rotate-6">
                 <item.icon size={28} className="text-blue-600 sm:w-8 sm:h-8" />
